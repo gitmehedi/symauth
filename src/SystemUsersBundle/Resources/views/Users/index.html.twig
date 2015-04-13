@@ -19,7 +19,7 @@
         <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('users_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.id }}</td>
                     <td>{{ entity.username }}</td>
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.email }}</td>
@@ -27,25 +27,17 @@
                     <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d') }}{% endif %}</td>
                     <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d') }}{% endif %}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('users_show', { 'id': entity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('users_edit', { 'id': entity.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <div class="btn-group">
+                            <a href="{{ path('users_show', { 'id': entity.id }) }}" class="btn btn-primary"> <span class="glyphicon glyphicon-info-sign"></span> Show</a>
+                            <a href="{{ path('users_edit', { 'id': entity.id }) }}" class="btn btn-info"> <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <ul class="btn-group">
-        <li>
-            <a  href="{{ path('users_new') }}" class="btn btn-primary">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div class="btn-group">
+        <a  href="{{ path('users_new') }}" class="btn btn-primary">Create a new entry</a>
+        <a  href="{{ path('users_new') }}" class="btn btn-info">Create a new entry</a>
+    </div>
 {% endblock %}
