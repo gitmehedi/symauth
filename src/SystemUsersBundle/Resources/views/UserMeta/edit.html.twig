@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>UserMeta edit</h1>
+  {{ form_start(edit_form)}}
+    <div class="row">
+        {{ form_row(edit_form)}}
+        
+        {{ include('SporshoUserBundle:Form:button.html.twig', {'form': edit_form }) }}
+    </div>
+    {{ form_end(edit_form)}}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('usermeta') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

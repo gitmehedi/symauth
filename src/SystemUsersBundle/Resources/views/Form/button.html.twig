@@ -1,0 +1,13 @@
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+
+        {% if form %}
+            {{ form_row(form.submit,{'label':'Submit'})}}
+        {% else %}
+            {{ form_row(form.submit,{'label':'Create'})}}
+        {% endif %}
+
+        {{ form_row(form.reset)}}  
+    </div>
+</div>

@@ -1,0 +1,35 @@
+users:
+    path:     /
+    defaults: { _controller: "SystemUsersBundle:Users:index" }
+
+users_show:
+    path:     /{id}/show
+    defaults: { _controller: "SystemUsersBundle:Users:show" }
+
+users_new:
+    path:     /new
+    defaults: { _controller: "SystemUsersBundle:Users:new" }
+    methods: GET
+
+users_create:
+    path:     /create
+    defaults: { _controller: "SystemUsersBundle:Users:create" }
+    methods:  POST
+
+users_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SystemUsersBundle:Users:edit" }
+
+users_update:
+    path:     /{id}/update
+    defaults: { _controller: "SystemUsersBundle:Users:update" }
+    methods:  [POST, PUT]
+
+users_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SystemUsersBundle:Users:delete" }
+    methods:  [POST, DELETE]
+    
+user_profile:
+    path: /user-profile
+    defaults: {_controller: "SystemUsersBundle:Users:profile"}

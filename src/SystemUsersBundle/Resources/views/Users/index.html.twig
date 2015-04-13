@@ -1,0 +1,51 @@
+{% extends '::system/system.html.twig' %}
+
+{% block body -%}
+    <h1>Users list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Appstatus</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('users_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.appStatus }}</td>
+                    <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('users_show', { 'id': entity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('users_edit', { 'id': entity.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="btn-group">
+        <li>
+            <a  href="{{ path('users_new') }}" class="btn btn-primary">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock %}

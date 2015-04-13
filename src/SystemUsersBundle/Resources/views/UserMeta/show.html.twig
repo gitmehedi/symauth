@@ -1,0 +1,92 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>UserMeta</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ entity.userId }}</td>
+            </tr>
+            <tr>
+                <th>Fathername</th>
+                <td>{{ entity.fatherName }}</td>
+            </tr>
+            <tr>
+                <th>Mothername</th>
+                <td>{{ entity.motherName }}</td>
+            </tr>
+            <tr>
+                <th>Dateofbirth</th>
+                <td>{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Lasteducation</th>
+                <td>{{ entity.lastEducation }}</td>
+            </tr>
+            <tr>
+                <th>Nationalid</th>
+                <td>{{ entity.nationalId }}</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>{{ entity.district }}</td>
+            </tr>
+            <tr>
+                <th>Policestation</th>
+                <td>{{ entity.policeStation }}</td>
+            </tr>
+            <tr>
+                <th>Presentaddress</th>
+                <td>{{ entity.presentAddress }}</td>
+            </tr>
+            <tr>
+                <th>Permanentaddress</th>
+                <td>{{ entity.permanentAddress }}</td>
+            </tr>
+            <tr>
+                <th>Mobileaccount</th>
+                <td>{{ entity.mobileAccount }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ entity.image }}</td>
+            </tr>
+            <tr>
+                <th>Nationalidimage</th>
+                <td>{{ entity.nationalIdImage }}</td>
+            </tr>
+            <tr>
+                <th>Signatureimage</th>
+                <td>{{ entity.signatureImage }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('usermeta') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('usermeta_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

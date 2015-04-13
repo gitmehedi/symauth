@@ -1,0 +1,11 @@
+#System user information bundle
+system_users_bundle:
+    resource: "@SystemUsersBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#Application Bundle
+application_bundle:
+    resource: @AppBundle/Resources/config/routing.yml
+    prefix: /
+
+

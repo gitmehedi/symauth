@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% if page_title is defined %} {{ page_title }} - Registration {% else %}Registration{% endif %}</title>
+
+        {% block stylesheet %}
+            <link href="{{ asset('bundles/webview/bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('bundles/webview/css/lib/jquery-ui.min.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock%}
+
+        {% block javascript %}
+            <script>var baseUrl = '{{ app.request.getBaseURL() }}';</script>
+
+            <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery-2.1.1.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery-ui.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery.validate.min.js') }}"></script>
+        {% endblock %}
+
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script>
+
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                {% block body %}
+
+                {% endblock%}
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <script src="../../dist/js/bootstrap.min.js"></script>
+          <script src="../../assets/js/docs.min.js"></script>#}
+
+
+    </body>
+</html>

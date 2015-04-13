@@ -1,0 +1,22 @@
+{% extends '::system/system.html.twig' %}
+
+{% block body -%}
+    <h1>Users creation</h1>
+    {{ form_start(form)}}
+    <div class="row">
+        {{ form_row(form.username)}}
+        {{ form_row(form.name)}}
+        {{ form_row(form.email)}}
+        {{ form_row(form.plainpassword.first,{'label':'Password','attr':{'class':'form-control'},'label_attr':{'class':'col-sm-2 control-label'}})}}
+        {{ form_row(form.plainpassword.second,{'label':'Confirmed Password','attr':{'class':'form-control'},'label_attr':{'class':'col-sm-2 control-label'}})}}
+    </div>
+    {{ include('SystemUsersBundle:Form:button.html.twig', {'form': form}) }}
+    {{ form_end(form)}}
+    <ul class="table">
+        <li>
+            <a href="{{ path('users') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

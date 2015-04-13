@@ -1,0 +1,11 @@
+SystemUsersBundle\Entity\User:
+    properties:
+     
+
+#---------------------------------- Usermeta validation ----------------------------------------#
+SystemUsersBundle\Entity\UserMeta:
+    properties:
+        name:
+            - NotBlank: ~
+        fatherName:
+            - NotBlank: ~

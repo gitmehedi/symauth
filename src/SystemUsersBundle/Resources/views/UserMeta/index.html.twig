@@ -1,0 +1,71 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>UserMeta list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Userid</th>
+                <th>Fathername</th>
+                <th>Mothername</th>
+                <th>Dateofbirth</th>
+                <th>Lasteducation</th>
+                <th>Nationalid</th>
+                <th>District</th>
+                <th>Policestation</th>
+                <th>Presentaddress</th>
+                <th>Permanentaddress</th>
+                <th>Mobileaccount</th>
+                <th>Image</th>
+                <th>Nationalidimage</th>
+                <th>Signatureimage</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('usermeta_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.userId }}</td>
+                <td>{{ entity.fatherName }}</td>
+                <td>{{ entity.motherName }}</td>
+                <td>{% if entity.dateOfBirth %}{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.lastEducation }}</td>
+                <td>{{ entity.nationalId }}</td>
+                <td>{{ entity.district }}</td>
+                <td>{{ entity.policeStation }}</td>
+                <td>{{ entity.presentAddress }}</td>
+                <td>{{ entity.permanentAddress }}</td>
+                <td>{{ entity.mobileAccount }}</td>
+                <td>{{ entity.image }}</td>
+                <td>{{ entity.nationalIdImage }}</td>
+                <td>{{ entity.signatureImage }}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('usermeta_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('usermeta_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('usermeta_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

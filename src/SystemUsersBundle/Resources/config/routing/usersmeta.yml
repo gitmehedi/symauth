@@ -1,0 +1,30 @@
+usermeta:
+    pattern:  /
+    defaults: { _controller: "SytemUsersBundle:UserMeta:index" }
+
+usermeta_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SytemUsersBundle:UserMeta:show" }
+
+usermeta_new:
+    pattern:  /new
+    defaults: { _controller: "SytemUsersBundle:UserMeta:new" }
+
+usermeta_create:
+    pattern:  /create
+    defaults: { _controller: "SytemUsersBundle:UserMeta:create" }
+    requirements: { _method: post }
+
+usermeta_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SytemUsersBundle:UserMeta:edit" }
+
+usermeta_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SytemUsersBundle:UserMeta:update" }
+    requirements: { _method: post|put }
+
+usermeta_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SytemUsersBundle:UserMeta:delete" }
+    requirements: { _method: post|delete }

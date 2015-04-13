@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        {#        <link re l="shortcut icon" href="../../assets/ico/favicon.ico">#}
+
+        <title>{% if page_title is defined %} {{ page_title }} - System {% else %}System{% endif %}</title>
+
+
+
+
+        {% block stylesheet %}
+        <a href="../../../../admin/index.html"></a>
+        <link href="{{ asset('bundles/webview/bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/webview/css/lib/jquery-ui.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/webview/css/custom/dashboard.css') }}" type="text/css" rel="stylesheet" />
+        {#        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css"/>#}
+    {% endblock%}
+
+    {% block javascript %}
+        <script>var baseUrl = '{{ app.request.getBaseURL() }}';</script>
+
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery-2.1.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/jquery.validate.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/lib/angular.min.js') }}"></script>
+
+
+        {#            <script type="text/javascript" src="{{ asset('bundles/webview/js/startup.js') }}"></script>#}
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/custom/utility.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/custom/common.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/custom/angle.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/webview/js/custom/payment.js') }}"></script>
+    {% endblock %}
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+
+        $(document).ready(function () {
+            $("#signupdForm").validate({
+                rules: {
+                    last_education: {
+                        selectcheck: true
+                    }
+                },
+                submitHandler: function (form) {
+                    $('#submit').attr('disabled', 'disabled');
+                    $(form).submit();
+                },
+                errorPlacement: function () {
+                    return false;
+                }
+            });
+            jQuery.validator.addMethod('selectcheck', function (value) {
+                return (value != '');
+            }, "last_education required");
+
+            $('.settings-logo').click(function () {
+                $('.setting-nav').toggle();
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+    {% if app.user %}
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar">sdf</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">System</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <div class="pull-left img-status">
+                            <a href="{{ path('user_profile') }}"><img class="img-profile" width="40" height="40" src="{{ asset('bundles/webview/images/profile_images/1414603309.7513_bcs-images.jpg') }}"/></a> 
+                            <div class="profile-txt"><strong>Welcome,</strong> {{ app.user? app.user.username: 'Admin'}}</div>
+                        </div>
+                        <span class="settings-logo navbar-brand">
+                            <img src="{{ asset('bundles/webview/images/settings.png') }}"/>
+                        </span>
+                        {#                        <div class="triangle"></div>#}
+                        <ul class="setting-nav dropdown-menu" role="menu">
+                            <li><a class="" href="{{ path('user_profile') }}">Profile</a></li>
+                                {#                            <li><a class="" href="{{ path('change_passowrd')}}">Change Password</a></li>#}
+                            <li><a class="" href="{{ path('_logout') }}">Logout</a></li>
+                        </ul>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    {% endif%}
+    <div class="container-fluid">
+        <div class="row">
+            {% set menu = app.session.get('menuTab') %}
+            {#            {{ menu }}#}
+            {% if app.user %}
+                <div class="col-sm-3 col-md-2 sidebar">
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_AGENT')%}
+                        <ul class="nav nav-sidebar">
+                            <li class="{%if menu=='dashboard'%}active{%endif%}"><a href="{{ path('applicant_home_routing') }}">Dashboard</a></li>
+                            <li class="{%if menu=='applicant'%}active{%endif%}"><a href="{{ path('applicant_home_routing') }}">Applicant List</a></li>
+                            <li class="{%if menu=='joined'%}active{%endif%}"><a href="{{ path('joined_applicant_list') }}">Joined Applicant</a></li>
+                            <li class="{%if menu=='districtincharge'%}active{%endif%}"><a href="{{ path('dashboard_districts_in_charge') }}">District In Charge</a></li>
+                                {#                            <li class="{%if menu=='payment'%}active{%endif%}"><a href="{{ path('dashboard_payment_by_member') }}">Payment</a></li>#}
+                            <li class="{%if menu=='fieldofficer'%}active{%endif%}"><a href="{{ path('dashboard_field_officer') }}">Field Officer</a></li>
+                                {% if is_granted('ROLE_ADMIN')%}
+                                <li class="{%if menu=='agent'%}active{%endif%}"><a href="{{ path('home_routing', { 'roleType': 'agent' }) }}">Agents</a></li>
+                                {% endif %}
+
+                            <li class="{%if menu=='member'%}active{%endif%}"><a href="{{ path('home_routing', { 'roleType': 'member' }) }}">Members</a></li>
+                            <li class="{%if menu=='signup'%}active{%endif%}"><a href="{{ path('new_user_register') }}">Add New User</a></li>
+                                {% if is_granted('ROLE_MEMBER')%}
+                                    {#                                <li class=""><a href="{{ path('home_routing') }}">Members</a></li>#}
+                                {% endif %}
+                        </ul>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN')%}
+                        <ul class="nav nav-sidebar">
+                            <li class="{%if menu=='zone'%}active{%endif%}"><a href="{{ path('zone') }}">Zone</a></li>
+                            <li class="{%if menu=='district'%}active{%endif%}"><a href="{{ path('districts') }}">Districts</a></li>
+                            <li class="{%if menu=='station'%}active{%endif%}"><a href="{{ path('policestation') }}">Police Stations</a></li>
+                        </ul>
+                    {% endif %}
+                    {#  <ul class="nav nav-sidebar">
+                          <li><a href="">Nav item again</a></li>
+                          <li><a href="">One more nav</a></li>
+                          <li><a href="">Another nav item</a></li>
+                      </ul>#}
+                </div>
+            {% endif %}
+
+            <div class="col-md-10 col-md-offset-2 main">
+                {#                    <h3 class="page-header">{% if page_heading is defined %} {{ page_heading }}{% endif %}</h3>#}
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('message') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                {% set items = { '1': 'SSC',
+                                 '2': 'HSC',
+                                 '3': 'BA/BSc/Honors',
+                                 '4':'MA/MSc' } %}
+                {% set jobStatus = { '1': 'Employed', 
+                                     '2': 'Un-employed', 
+                                     '3': 'Self-employed',
+                                     '4':'Student' } %}
+                {% set roles = { 'ROLE_USER': 'Pending', 
+                                 'ROLE_AGENT': 'Agent',
+                                 'ROLE_MEMBER': 'Member',
+                                 'ROLE_ACCOUNT':'Account',
+                                 'ROLE_MARKETING': 'Marketing',
+                                 'ROLE_ZONAL':'Zonal', 
+                                 'ROLE_ADMIN': 'Admin' } %}
+                {% set appStatus = { '1': 'Applied',
+                                     '2': 'Selected',
+                                     '3': 'Interview',
+                                     '4': 'Rejected',
+                                     '5':'Joined',
+                                     '6':'Terminated',
+                                     '7':'Resigned' } %}
+                {% set position= { '1': 'District Incharge',
+                                   '2': 'Field Officer' } %}
+                <script>
+                    //Form validation code are Below
+                    $.validator.setDefaults({ignore: ''});
+                    var formId = "signupForm";
+                    if (formId != '' && formId != null)
+                    {
+                        $("#" + formId).validate({
+                            invalidHandler: function (e, validator) {
+                                $("#" + formId).find('.chzn-single').css({'border': '1px solid #AAAAAA'});
+                                var that = validator.errorList;
+                                for (var z in that)
+                                {
+                                    var curElem = $(that[z]['element']);
+                                    if (curElem.hasClass('chzn-done'))
+                                    {
+                                        curElem.siblings('div').children('.chzn-single').css({'border': '1px solid red'});
+                                        curElem.siblings('div').focus();
+                                    }
+                                }
+                                $('.alert').hide();
+                                var errors = validator.numberOfInvalids();
+                                if (errors) {
+                                    var message = errors == 1
+                                            ? 'Required field is empty or invalid. '
+                                            : 'Required ' + errors + ' fields  are empty or invalid.  ';
+                                    $("div.alert-error").html(message);
+                                    $("div.alert-error").show();
+                                } else {
+                                    $("div.alert-error").hide();
+                                }
+                            },
+                            errorElement: "span",
+                            errorPlacement: function (error, element) {
+                                // Do nothing cause only a generalized error will be shown at the top of the form
+                            },
+                            highlight: function (element, errorClass, validClass) {
+                                if ($(element).hasClass('chzn-done'))
+                                {
+                                    $(element).siblings('div').children('.chzn-single').css({'border': '1px solid red'});
+                                    $(element).siblings('div').focus();
+                                }
+                                else
+                                {
+                                    $(element).addClass('error');
+                                }
+                            },
+                            unhighlight: function (element, errorClass, validClass) {
+                                if ($(element).hasClass('chzn-done'))
+                                {
+                                    $(element).siblings('div').children('.chzn-single').css({'border': '1px solid AAAAAA'});
+                                }
+                                else
+                                {
+                                    $(element).removeClass('error');
+                                }
+                                //                                            $(element).removeClass('error');
+                            }
+                        });
+                    }
+                    function commonjserror(count) {
+                        var returnmsg = (count == 1) ? 'Required field is empty or invalid.' : 'Required ' + count + ' fields  are empty or invalid.';
+                        $(".alert-error").show();
+                        $('.alert-error').html(returnmsg);
+                    }
+                </script>
+                {% block body %}
+
+                {% endblock%}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="../../dist/js/bootstrap.min.js"></script>
+      <script src="../../assets/js/docs.min.js"></script>#}
+
+
+</body>
+</html>
