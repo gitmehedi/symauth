@@ -1,0 +1,226 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 28, 2014, 8:22:57 PM
+    Author     : MD. Mehedi Hasan
+*/
+
+body {
+    padding-top: 50px;
+    /*background-color: black;*/
+}
+.middle-fixed{
+    position: fixed;
+    top: 200px;
+    left: 467px;
+}
+.error{
+    border: 1px solid red;
+    vertical-align: middle;
+
+}
+.error-text{
+    color:  red;
+    border-bottom: 2px solid yellow;
+}
+.label-txt{
+    color:  red;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > li a:hover {
+    color: #5E5F60;
+    font-weight: bold;
+    background-color: #63DDF6;
+}
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover {
+    color: #fff;
+    font-weight: bold;
+    background-color: #428bca;
+}
+
+.dropdown-menu > li > a {
+    padding-left:20px;
+    padding-right:20px;
+    color: #428BCA;
+    display:block;
+    padding:10px 15px;
+    position:relative;
+}
+
+.dropdown-menu > li:hover > a {
+    color: #fff;
+    font-weight: bold;
+    background-color: #428bca;
+}
+
+.triangle{
+    width: 0;
+    border-top: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-bottom: 12px solid blue;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+.main .page-header {
+    margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+label.error {
+    color:red;
+}
+input.error {
+    border:1px solid red;
+}
+
+h5,h3{
+    color: #42EA00;
+}
+div.main{
+    /*    -moz-box-shadow: 2px  yellow; 
+        -webkit-box-shadow: 2px yellow; */
+    box-shadow:  yellow; 
+}
+
+.no-border>thead>tr>th, 
+.no-border>tbody>tr>th, 
+.no-border>tfoot>tr>th, 
+.no-border>thead>tr>td, 
+.no-border>tbody>tr>td, 
+.no-border>tfoot>tr>td {
+    border-top: none; 
+}
+
+
+.img-status{
+    margin-right: 20px;
+    margin-top: 5px;
+    width: 200px;
+    color: #fff;
+}
+.img-profile{
+    margin-right: 20px;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    float: left;
+}
+.profile-txt{
+    float: left;
+    width: 100px;
+}
+
+.form-horizontal .control-label,
+.form-horizontal .radio,
+.form-horizontal .checkbox,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline {
+    margin-top: -8px;
+}
+.radio-inline, .checkbox-inline {
+    display: inline-block;
+    padding-left: 19px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.add-padding{
+    padding-left: 13px;
+    font-weight: bold;
+}
+.td-disabled{
+    height: 52px;
+}
+
+.dashboard-table{
+    /*border: 2px solid red;*/
+    box-sizing: border-box;
+  
+}
+.blue{
+    color: yellowgreen;
+}

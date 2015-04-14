@@ -3,7 +3,7 @@
 namespace SystemUsersBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use \Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Users
@@ -11,7 +11,7 @@ use \Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table("users")
  * @ORM\Entity(repositoryClass="SystemUsersBundle\Entity\UsersRepository")
  */
-class Users implements UserInterface
+class Users implements AdvancedUserInterface
 {
 
     /**
@@ -90,6 +90,13 @@ class Users implements UserInterface
     private $appStatus;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active",type="boolean")
+     */
+    private $isActive;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -111,7 +118,7 @@ class Users implements UserInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -134,7 +141,7 @@ class Users implements UserInterface
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -157,7 +164,7 @@ class Users implements UserInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -180,7 +187,7 @@ class Users implements UserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -203,7 +210,7 @@ class Users implements UserInterface
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -226,7 +233,7 @@ class Users implements UserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -235,7 +242,7 @@ class Users implements UserInterface
 
     /**
      * Set plainpassword for the application
-     * 
+     *
      * @param type $plainpassword
      */
     function setPlainpassword($plainpassword)
@@ -245,7 +252,7 @@ class Users implements UserInterface
 
     /**
      * Get plainpassword for the application
-     * 
+     *
      * @return type
      */
     function getPlainpassword()
@@ -255,7 +262,7 @@ class Users implements UserInterface
 
     /**
      * Set resetPassword for the application
-     * 
+     *
      * @param type $resetPassword
      */
     function setResetPassword($resetPassword)
@@ -265,7 +272,7 @@ class Users implements UserInterface
 
     /**
      * Get plainpassword for the application
-     * 
+     *
      * @return type
      */
     function getResetPassword()
@@ -289,18 +296,19 @@ class Users implements UserInterface
     /**
      * Get roles
      *
-     * @return string 
+     * @return string
      */
     public function getRoles()
     {
         $roles   = $this->roles;
         $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
     /**
      *  set salt property of user
-     * 
+     *
      * @return type
      */
     function getSalt()
@@ -310,7 +318,7 @@ class Users implements UserInterface
 
     /**
      * Get salt value of user
-     * 
+     *
      * @param type $salt
      */
     function setSalt($salt)
@@ -334,11 +342,31 @@ class Users implements UserInterface
     /**
      * Get appStatus
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAppStatus()
     {
         return $this->appStatus;
+    }
+
+    /**
+     * Get Is active property
+     *
+     * @return type
+     */
+    function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set Is active property
+     *
+     * @param \SystemUsersBundle\Entity\type $isActive
+     */
+    function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
     }
 
     /**
@@ -357,7 +385,7 @@ class Users implements UserInterface
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -380,7 +408,7 @@ class Users implements UserInterface
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -394,5 +422,66 @@ class Users implements UserInterface
     {
         $this->setPlainpassword(null);
     }
+
+    /**
+     * Checks whether the user's account has expired.
+     *
+     * Internally, if this method returns false, the authentication system
+     * will throw an AccountExpiredException and prevent login.
+     *
+     * @return bool true if the user's account is non expired, false otherwise
+     *
+     * @see AccountExpiredException
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * Checks whether the user is locked.
+     *
+     * Internally, if this method returns false, the authentication system
+     * will throw a LockedException and prevent login.
+     *
+     * @return bool true if the user is not locked, false otherwise
+     *
+     * @see LockedException
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * Checks whether the user's credentials (password) has expired.
+     *
+     * Internally, if this method returns false, the authentication system
+     * will throw a CredentialsExpiredException and prevent login.
+     *
+     * @return bool true if the user's credentials are non expired, false otherwise
+     *
+     * @see CredentialsExpiredException
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * Checks whether the user is enabled.
+     *
+     * Internally, if this method returns false, the authentication system
+     * will throw a DisabledException and prevent login.
+     *
+     * @return bool true if the user is enabled, false otherwise
+     *
+     * @see DisabledException
+     */
+    public function isEnabled()
+    {
+        return $this->getIsActive();
+    }
+
 
 }
