@@ -4,6 +4,7 @@ namespace SystemUsersBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Users
@@ -45,9 +46,8 @@ class Users implements AdvancedUserInterface
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     * @ORM\Column(length=255, unique=true)
      */
     private $slug;
 
@@ -350,26 +350,6 @@ class Users implements AdvancedUserInterface
     }
 
     /**
-     * Get Is active property
-     *
-     * @return type
-     */
-    function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * Set Is active property
-     *
-     * @param \SystemUsersBundle\Entity\type $isActive
-     */
-    function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -377,6 +357,7 @@ class Users implements AdvancedUserInterface
      */
     public function setCreatedAt($createdAt)
     {
+
         $this->createdAt = $createdAt;
 
         return $this;
@@ -413,6 +394,28 @@ class Users implements AdvancedUserInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Get Is active property
+     *
+     * @return type
+     */
+    function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set Is active property
+     *
+     * @param \SystemUsersBundle\Entity\type $isActive
+     * @return $users
+     */
+    function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+        return $this;
     }
 
     /**
@@ -482,6 +485,5 @@ class Users implements AdvancedUserInterface
     {
         return $this->getIsActive();
     }
-
 
 }

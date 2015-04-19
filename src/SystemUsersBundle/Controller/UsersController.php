@@ -3,8 +3,8 @@
 namespace SystemUsersBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SystemUsersBundle\Controller\AppController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SystemUsersBundle\Entity\Users;
 use SystemUsersBundle\Form\UsersType;
 
@@ -44,8 +44,10 @@ class UsersController extends AppController
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->setPassword($this->encodePassword($entity, $entity->getPlainpassword()))
-                    ->setSlug($entity->getUsername())
+//                    ->setSlug($this->get('cocur_slugify')->slugify($entity->getName()))
+                    ->setRoles(array('ROLE_USER'))
                     ->setAppStatus(1)
+                    ->setIsActive(0)
                     ->setCreatedAt(new \DateTime())
                     ->setUpdatedAt(new \DateTime());
             $em->persist($entity);
@@ -127,7 +129,6 @@ class UsersController extends AppController
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Users entity.');
         }
-
 
         $editForm   = $this->createForm(new UsersType(), $entity, $this->formAttr($id));
         $deleteForm = $this->createDeleteForm($id);
@@ -252,7 +253,6 @@ class UsersController extends AppController
      */
     public function profileAction()
     {
-
         $logUser = $this->getCurrentUser();
         $id      = $logUser->getId();
 

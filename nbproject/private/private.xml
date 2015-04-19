@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/app/Resources/views/registration.html.twig</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/views/Form/button.html.twig</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Controller/UsersController.php</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/config/routing/users.yml</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Form/UsersType.php</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Entity/Users.php</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/views/Login/changePasswd.html.twig</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/app/config/config.yml</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/views/Login/login.html.twig</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/views/Form/fields.html.twig</file>
-            <file>file:/D:/xampp/htdocs/tests/gw-dgdp-demo/src/SystemUsersBundle/Resources/views/Users/new.html.twig</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

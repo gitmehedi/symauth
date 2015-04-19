@@ -2,25 +2,6 @@ system_users_users:
     resource: "@SystemUsersBundle/Resources/config/routing/users.yml"
     prefix:   /users
 
-
-personal_daily_cost_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SporshoDailyCostBundle:Default:index }
-    
-#user_registration:
-#    resource: "@SystemUsersBundle/Resources/config/routing/registration.yml"
-#    prefix:   /
-
-    
-UserBundle_usermeta:
-    resource: "@SystemUsersBundle/Resources/config/routing/usersmeta.yml"
-    prefix:   /usermeta
-
-dashboard:
-    resource: "@SystemUsersBundle/Resources/config/routing/dashboard.yml"
-    prefix:   /
-
-
 #Security related portions
 
 _login:

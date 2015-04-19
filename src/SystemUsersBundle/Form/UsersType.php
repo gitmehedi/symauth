@@ -35,9 +35,22 @@ class UsersType extends AbstractType
             'label_attr' => $labelAttr,
         ));
 
-   
+        $builder->add('captcha', 'captcha', array(
+            'length'           => 5,
+            'label'            => 'Captcha Verification',
+            'attr'             => array('class' => 'form-control col-sm-3', 'maxlength' => 5, 'placeholder' => 'Security code'),
+            'label_attr'       => $labelAttr,
+            'invalid_message'  => 'Security code is invalid',
+            'background_color' => [200, 200, 200],
+            'quality'          => 80,
+            'height'           => 80,
+            'width'            => 200,
+            'error_bubbling'   => true
+        ));
+
+
         $builder->add('plainpassword', 'repeated', array(
-           'type'=>'password',
+            'type' => 'password',
         ));
 
 
