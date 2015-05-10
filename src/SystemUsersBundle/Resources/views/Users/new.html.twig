@@ -9,7 +9,7 @@
         {{ form_row(form.email)}}
         {{ form_row(form.plainpassword.first,{'label':'Password','attr':{'class':'form-control'},'label_attr':{'class':'col-sm-2 control-label'}})}}
         {{ form_row(form.plainpassword.second,{'label':'Confirmed Password','attr':{'class':'form-control'},'label_attr':{'class':'col-sm-2 control-label'}})}}
-        {{ form_row(form.captcha) }}
+{#        {{ form_row(form.captcha) }}#}
     </div>
     {{ include('SystemUsersBundle:Form:button.html.twig', {'form': form}) }}
     {{ form_end(form,{'novalidate':'novalidate'})}}

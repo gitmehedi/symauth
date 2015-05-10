@@ -28,10 +28,17 @@ security:
             form_login:
                 check_path: /login_check
                 login_path: /login
+                remember_me: true
+                default_target_path: /users/new
             logout:
                 path:   /logout
                 target: /
             anonymous: ~
+            remember_me:
+                key:      "%secret%"
+                lifetime: 20 
+                path:     /
+                domain:   ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
@@ -40,4 +47,4 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
          - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http }
-#         - { path: ^/users, roles: ROLE_USER}
+         - { path: ^/users, roles: ROLE_USER}

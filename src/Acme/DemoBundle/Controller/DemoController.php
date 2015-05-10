@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Acme\DemoBundle\Form\ContactType;
-
 // these import the "@Route" and "@Template" annotations
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DemoController extends Controller
 {
+
     /**
      * @Route("/", name="_demo")
      * @Template()
@@ -53,4 +53,17 @@ class DemoController extends Controller
 
         return array('form' => $form->createView());
     }
+
+    public function sendmailAction($name)
+    {
+        $message = \Swift_Message:: newInstance()
+                ->setSubject('Hello Email')
+                ->setFrom('send@example.com')
+                ->setTo('recipient@example.com')
+                ->setBody($this->renderView(
+                        'HelloBundle:Hello:email.txt.twig', array('name' => $name)
+        ));
+        $this->get('mailer')->send($message);
+    }
+
 }

@@ -37,7 +37,7 @@ class UsersController extends AppController
     public function createAction(Request $request)
     {
         $entity = new Users();
-
+echo $this->container->getParameter('name'); die();
         $form = $this->createForm(new UsersType(), $entity, $this->formAttr());
         $form->handleRequest($request);
 
@@ -56,6 +56,31 @@ class UsersController extends AppController
             return $this->redirect($this->generateUrl('users_show', array('id' => $entity->getId())));
         }
 
+        foreach ($form->getErrors() as $key => $error) {
+            if ($form->isRoot()) {
+                $errors['#'][] = $error->getMessage();
+            } else {
+                $errors[] = $error->getMessage();
+            }
+        }
+
+        foreach ($form->all() as $child) {
+            if (!$child->isValid()) {
+                $errors[$child->getName()] = $this->getErrorMessages($child);
+            }
+        }
+
+
+//        $error = $this->getErrorMessages($form);
+//        foreach ($error as $key => $errors) {
+//            $errors[0] = ($key == "name") ? $errors[0] : 'new langulage';
+//            ValidationController::debug($errors[0]);
+//        }
+
+
+
+
+//        die();
         return $this->render('SystemUsersBundle:Users:new.html.twig', array(
                     'entity' => $entity,
                     'form'   => $form->createView(),
@@ -239,10 +264,11 @@ class UsersController extends AppController
             'action' => $insert,
             'method' => 'POST',
             'attr'   => array(
-                'role'    => 'form',
-                'class'   => 'form-horizontal',
-                'id'      => 'signupForm',
-                'enctype' => 'multipart/form-data',
+                'role'       => 'form',
+                'class'      => 'form-horizontal',
+                'id'         => 'signupForm',
+                'enctype'    => 'multipart/form-data',
+                'novalidate' => ''
             )
         );
     }
@@ -284,6 +310,27 @@ class UsersController extends AppController
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
 
         return $encoder->encodePassword($plainPassword, $user->getSalt());
+    }
+
+    private function getErrorMessages(\Symfony\Component\Form\Form $form)
+    {
+        $errors = array();
+
+        foreach ($form->getErrors() as $key => $error) {
+            if ($form->isRoot()) {
+                $errors['#'][] = $error->getMessage();
+            } else {
+                $errors[] = $error->getMessage();
+            }
+        }
+
+        foreach ($form->all() as $child) {
+            if (!$child->isValid()) {
+                $errors[$child->getName()] = $this->getErrorMessages($child);
+            }
+        }
+
+        return $errors;
     }
 
 }

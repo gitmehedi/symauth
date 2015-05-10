@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use SystemUsersBundle\Entity\Users;
 
 /**
  * Comment
@@ -42,7 +43,11 @@ class Comment
      */
     private $status;
 
-
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="SystemUsersBundle\Entity\Users")
+     */
+    protected $owner;
     /**
      * Get id
      *

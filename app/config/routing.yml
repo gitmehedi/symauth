@@ -1,3 +1,7 @@
+acme_checks:
+    resource: "@AcmeChecksBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #System user information bundle
 system_users_bundle:
     resource: "@SystemUsersBundle/Resources/config/routing.yml"

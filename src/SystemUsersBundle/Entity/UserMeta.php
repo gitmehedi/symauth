@@ -71,6 +71,12 @@ class UserMeta
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
+    
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     */
+    private $owner;
 
     /**
      * Get id

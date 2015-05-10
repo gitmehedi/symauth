@@ -1,0 +1,21 @@
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_label(form) }}
+            <div class="col-sm-6">
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+    <span>
+        {%- for error in errors -%}
+            {{ error.message|trans({},'messages') }}
+        {%- endfor -%}
+    </span>
+    {%- endif -%}
+{%- endblock form_errors -%}
