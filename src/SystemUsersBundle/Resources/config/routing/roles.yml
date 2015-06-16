@@ -1,0 +1,30 @@
+roles:
+    path:     /
+    defaults: { _controller: "SystemUsersBundle:Roles:index" }
+
+roles_show:
+    path:     /{id}/show
+    defaults: { _controller: "SystemUsersBundle:Roles:show" }
+
+roles_new:
+    path:     /new
+    defaults: { _controller: "SystemUsersBundle:Roles:new" }
+
+roles_create:
+    path:     /create
+    defaults: { _controller: "SystemUsersBundle:Roles:create" }
+    methods:  POST
+
+roles_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SystemUsersBundle:Roles:edit" }
+
+roles_update:
+    path:     /{id}/update
+    defaults: { _controller: "SystemUsersBundle:Roles:update" }
+    methods:  [POST, PUT]
+
+roles_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SystemUsersBundle:Roles:delete" }
+    methods:  [POST, DELETE]

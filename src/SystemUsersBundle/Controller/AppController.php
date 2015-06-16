@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use SystemUsersBundle\Entity\Users;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AppController extends Controller
 {
@@ -24,12 +25,36 @@ class AppController extends Controller
 //        setcookie('active_menu', $active_menu, time() - (86400 * 7), '/');
     }
 
+    public function getActionName($request)
+    {
+        $request->attributes->get('_controller');
+
+        $explode    = explode('::', $request->attributes->get('_controller'));
+        $controller = explode('\\', $explode[0]);
+
+        $params['controller'] = substr($controller[count($controller) - 1], 0, -10);
+        $params['action']     = substr($explode[1], 0, -6);
+
+        $role = $this->getSpecificEntity('Resources')->getRolesName($params);
+        if ($role) {
+            $role = 'ROLE_' . strtoupper($role);
+        }
+        if (false === $this->get('security.context')->isGranted($role)) {
+            throw new AccessDeniedException();
+        }
+//        return true;
+        echo "<pre>";
+        print_r($role);
+        print_r($this->get('security.context')->isGranted('ROLE_ADMIN'));
+        die();
+    }
+
     public function getCurrentUser()
     {
 
         $securityContext = $this->get('security.context');
         $authObj         = $securityContext->getToken()->getUser();
-      
+
         if ($authObj == "anon.") {
             $this->userId = 0;
         } else {

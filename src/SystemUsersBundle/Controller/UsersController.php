@@ -19,11 +19,11 @@ class UsersController extends AppController
      * Lists all Users entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('SystemUsersBundle:Users')->findAll();
+     $this->getActionName($request);
+        $entities   = $em->getRepository('SystemUsersBundle:Users')->findAll();
 
         return $this->render('SystemUsersBundle:Users:index.html.twig', array(
                     'entities' => $entities,
@@ -36,9 +36,11 @@ class UsersController extends AppController
      */
     public function createAction(Request $request)
     {
+
         $entity = new Users();
-echo $this->container->getParameter('name'); die();
-        $form = $this->createForm(new UsersType(), $entity, $this->formAttr());
+        echo $this->container->getParameter('name');
+        die();
+        $form   = $this->createForm(new UsersType(), $entity, $this->formAttr());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -76,10 +78,6 @@ echo $this->container->getParameter('name'); die();
 //            $errors[0] = ($key == "name") ? $errors[0] : 'new langulage';
 //            ValidationController::debug($errors[0]);
 //        }
-
-
-
-
 //        die();
         return $this->render('SystemUsersBundle:Users:new.html.twig', array(
                     'entity' => $entity,

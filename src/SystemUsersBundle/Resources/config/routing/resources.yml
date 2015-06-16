@@ -1,0 +1,30 @@
+resources:
+    path:     /
+    defaults: { _controller: "SystemUsersBundle:Resources:index" }
+
+resources_show:
+    path:     /{id}/show
+    defaults: { _controller: "SystemUsersBundle:Resources:show" }
+
+resources_new:
+    path:     /new
+    defaults: { _controller: "SystemUsersBundle:Resources:new" }
+
+resources_create:
+    path:     /create
+    defaults: { _controller: "SystemUsersBundle:Resources:create" }
+    methods:  POST
+
+resources_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SystemUsersBundle:Resources:edit" }
+
+resources_update:
+    path:     /{id}/update
+    defaults: { _controller: "SystemUsersBundle:Resources:update" }
+    methods:  [POST, PUT]
+
+resources_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SystemUsersBundle:Resources:delete" }
+    methods:  [POST, DELETE]

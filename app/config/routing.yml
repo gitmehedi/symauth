@@ -1,5 +1,6 @@
-acme_checks:
-    resource: "@AcmeChecksBundle/Resources/config/routing.yml"
+# Acme Demo Bundle 
+acme_demo:
+    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
     prefix:   /
 
 #System user information bundle

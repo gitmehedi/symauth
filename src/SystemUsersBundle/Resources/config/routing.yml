@@ -1,3 +1,11 @@
+system_users_roles:
+    resource: "@SystemUsersBundle/Resources/config/routing/roles.yml"
+    prefix:   /roles
+
+system_users_resources:
+    resource: "@SystemUsersBundle/Resources/config/routing/resources.yml"
+    prefix:   /resources
+
 system_users_users:
     resource: "@SystemUsersBundle/Resources/config/routing/users.yml"
     prefix:   /users

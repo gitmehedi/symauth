@@ -1,3 +1,11 @@
+acme_demo_tag:
+    resource: "@AcmeDemoBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag
+
+acme_demo_task:
+    resource: "@AcmeDemoBundle/Resources/config/routing/task.yml"
+    prefix:   /task
+
 _welcome:
     path:     /
     defaults: { _controller: AcmeDemoBundle:Welcome:index }
