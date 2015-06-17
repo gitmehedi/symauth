@@ -65,12 +65,7 @@ class UserMeta
      */
     private $updatedAt;
 
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="Users", inversedBy="UserMeta")
-     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
-     */
-    private $user;
+  
     
     /**
      *
@@ -226,27 +221,6 @@ class UserMeta
         return $this->updatedAt;
     }
 
-    /**
-     * Set user
-     *
-     * @param \SystemUsersBundle\Entity\User $user
-     * @return UserMeta
-     */
-    public function setUser(\SystemUsersBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
 
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \SystemUsersBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
 }

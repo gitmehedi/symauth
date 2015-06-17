@@ -39,13 +39,13 @@ class AppController extends Controller
         if ($role) {
             $role = 'ROLE_' . strtoupper($role);
         }
-        if (false === $this->get('security.context')->isGranted($role)) {
-            throw new AccessDeniedException();
+        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException("'Only an admin can do this!!!!'");
         }
 //        return true;
         echo "<pre>";
         print_r($role);
-        print_r($this->get('security.context')->isGranted('ROLE_ADMIN'));
+        print_r($this->get('security.context')->isGranted('ROLE_POST'));
         die();
     }
 
